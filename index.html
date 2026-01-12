@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anushka Bakers - Premium Quality & Fresh Taste</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- html2canvas for Invoice Download -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <style>
+        /* --- Global Variables & Reset --- */
+        :root {
+            /* Premium Palette */
+            --color-bg: #FFF8E1;
+            /* Softer Cream */
+            --color-primary: #3E2723;
+            /* Deep Chocolate */
+            --color-secondary: #D4AF37;
+            /* Gold Accent */
+            --color-accent: #F48FB1;
+            /* Soft Pink */
+            --color-white: #FFFFFF;
+            --color-text: #4E342E;
+            /* Dark Brown Text */
+            --color-light-gray: #f5f5f5;
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+
+            --shadow-sm: 0 2px 4px rgba(62, 39, 35, 0.1);
+            --shadow-md: 0 4px 8px rgba(62, 39, 35, 0.15);
+            --shadow-lg: 0 8px 16px rgba(62, 39, 35, 0.2);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            color: var(--color-primary);
+            line-height: 1.3;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), #5D4037);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #5D4037, var(--color-primary));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--color-secondary), #FBC02D);
+            color: var(--color-primary);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #FBC02D, var(--color-secondary));
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* --- Navbar --- */
+        .navbar {
+            background: rgba(255, 248, 225, 0.95);
+            backdrop-filter: blur(10px);
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .navbar-logo {
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-links {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-text);
+            position: relative;
+        }
+
+        .nav-links::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links:hover::after {
+            width: 100%;
+        }
+
+        .nav-links:hover {
+            color: var(--color-secondary);
+        }
+
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--color-primary);
+        }
+
+        @media screen and (max-width: 960px) {
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                top: 80px;
+                left: -100%;
+                background: var(--color-bg);
+                transition: all 0.4s ease;
+                padding-top: 4rem;
+                gap: 2rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .mobile-menu-icon {
+                display: block;
+            }
+
+            .nav-links {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* --- Hero Section --- */
+        .hero-container {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517433670267-08bbd4be890f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80') center center/cover no-repeat;
+            height: 85vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .hero-container h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-white);
+            text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+            font-style: italic;
+        }
+
+        .hero-container p {
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        /* --- Sections --- */
+        section {
+            padding: 6rem 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--color-secondary);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem auto;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* --- Menu --- */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border: 2px solid var(--color-primary);
+            background: transparent;
+            color: var(--color-primary);
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-primary);
+            color: var(--color-white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .menu-item {
+            background: var(--color-white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .menu-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .menu-info {
+            padding: 1.8rem;
+            text-align: center;
+        }
+
+        .menu-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.6rem;
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: var(--color-bg);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 1.2rem;
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 320px;
+            overflow: hidden;
+            border-radius: var(--radius);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: 'View';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: var(--color-primary);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            opacity: 0;
+        }
+
+        .gallery-item:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* --- Reviews --- */
+        #reviews {
+            background-color: var(--color-white);
+        }
+
+        .review-card {
+            background: var(--color-bg);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid var(--color-secondary);
+        }
+
+        .review-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stars {
+            color: var(--color-secondary);
+            letter-spacing: 2px;
+        }
+
+        /* --- Contact --- */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .contact-info {
+            background: var(--color-white);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            font-size: 1.2rem;
+        }
+
+        .map-container {
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 450px;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 5rem 0 2rem 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer h3 {
+            color: var(--color-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox.active .lightbox-img {
+            transform: scale(1);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-lightbox:hover {
+            color: var(--color-secondary);
+        }
+
+        /* --- Order Modal --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--color-white);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--color-primary);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-primary);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        .form-group input[readonly] {
+            background-color: #f9f9f9;
+            color: #777;
+            border-color: transparent;
+        }
+
+        .bill-summary {
+            background: var(--color-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px dashed var(--color-primary);
+        }
+
+        .bill-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .bill-total {
+            border-top: 1px solid #ccc;
+            padding-top: 0.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--color-primary);
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-option {
+            flex: 1;
+            border: 2px solid #eee;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            color: #777;
+        }
+
+        .payment-option.selected {
+            border-color: var(--color-secondary);
+            background: var(--color-bg);
+            color: var(--color-primary);
+        }
+
+        /* --- Invoice Styling --- */
+        #invoice-container {
+            background: white;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+            display: none;
+            /* Hidden by default */
+            position: relative;
+            overflow: hidden;
+        }
+
+        #invoice-container::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60%;
+            height: 60%;
+            background-image: url('https://lh3.googleusercontent.com/pw/AP1GczMzWA-DlRdjU66FQJN_I7Jo9uEsFM5MkglyMLd-EPNcig5IayWkmhcb9rR8qzYiH_XPTYmSYK3Xqa-3PQtue2qyLCzGLgO1lg76RSEeMzGQHC6JZK40eAxH9va1Y3KvQpfrkJ52x8DL3riNcCeK49j8=w919-h919-s-no-gm?authuser=0');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .invoice-header,
+        .invoice-details,
+        .invoice-table,
+        .invoice-total,
+        .invoice-footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .invoice-header {
+            text-align: center;
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .invoice-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .invoice-details {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            border-bottom: 1px solid #eee;
+            padding: 8px 0;
+            text-align: left;
+        }
+
+        .invoice-table th {
+            color: var(--color-primary);
+        }
+
+        .invoice-total {
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--color-secondary);
+        }
+
+        .invoice-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 2rem;
+        }
+
+        @media screen and (max-width: 768px) {
+            .hero-container h1 {
+                font-size: 3rem;
+            }
+
+            .hero-container p {
+                font-size: 1.2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 4rem 20px;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <a href="#" class="navbar-logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczMzWA-DlRdjU66FQJN_I7Jo9uEsFM5MkglyMLd-EPNcig5IayWkmhcb9rR8qzYiH_XPTYmSYK3Xqa-3PQtue2qyLCzGLgO1lg76RSEeMzGQHC6JZK40eAxH9va1Y3KvQpfrkJ52x8DL3riNcCeK49j8=w919-h919-s-no-gm?authuser=0"
+                    alt="Anushka Bakers" style="height: 60px; width: auto;">
+                <span>Anushka Bakers</span>
+            </a>
+            <div class="mobile-menu-icon" onclick="toggleMenu()">
+                &#9776;
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-links" onclick="closeMenu()">Home</a></li>
+                <li><a href="#menu" class="nav-links" onclick="closeMenu()">Menu</a></li>
+                <li><a href="#gallery" class="nav-links" onclick="closeMenu()">Gallery</a></li>
+                <li><a href="#contact" class="nav-links" onclick="closeMenu()">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-container">
+        <h1>Fresh Taste, Fresh Happiness!</h1>
+        <p>Baked with Love, Served with Smiles!</p>
+        <div class="hero-btns">
+            <a href="#menu" class="btn btn-primary">Explore Menu</a>
+            <a href="tel:+917068186472" class="btn btn-secondary">Call Now</a>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section id="welcome" class="container">
+        <h2 class="section-title">Welcome to Anushka Bakers</h2>
+        <p class="section-subtitle">
+            Located at Lumbini Road, Birdpur, right in front of SBI, we bring you the finest bakery delights.
+            From fresh cakes to crispy cookies, we ensure quality, hygiene, and the best taste in town.
+        </p>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="container">
+        <h2 class="section-title">Our Menu</h2>
+        <p class="section-subtitle">Explore our wide range of delicious treats, baked fresh every day.</p>
+        <div class="category-filter" id="category-filter">
+            <!-- Buttons injected by JS -->
+        </div>
+        <div class="menu-grid" id="menu-grid">
+            <!-- Items injected by JS -->
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="container">
+        <h2 class="section-title">Our Gallery</h2>
+        <p class="section-subtitle">A glimpse into our world of sweetness.</p>
+        <div class="gallery-grid" id="gallery-grid">
+            <!-- Images injected by JS -->
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <div class="container">
+            <h2 class="section-title">Customer Love</h2>
+            <p class="section-subtitle">What our happy customers have to say.</p>
+            <div class="menu-grid">
+                <div class="review-card">
+                    <p class="review-text">"The best cake I've ever had! Highly recommended."</p>
+                    <h4 class="review-author">- Amit Kumar</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Fresh and delicious. The staff is very friendly."</p>
+                    <h4 class="review-author">- Priya Singh</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="review-card">
+                    <p class="review-text">"Ordered a birthday cake and it was perfect!"</p>
+                    <h4 class="review-author">- Rahul Verma</h4>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">We'd love to hear from you. Visit us or call us!</p>
+        <div class="contact-content">
+            <div class="contact-info">
+                <h3>Get in Touch</h3>
+                <p style="margin-bottom: 2rem; color: #666;">Owner: <strong>Prabhu Dayal Gupta</strong></p>
+
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div>Lumbini Road, Birdpur, in front of SBI</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div>+91 7068186472</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div>+91 7317838282</div>
+                </div>
+
+                <div style="margin-top: 2.5rem; display: flex; gap: 1rem;">
+                    <a href="tel:+917068186472" class="btn btn-primary">Call Now</a>
+                    <a href="https://wa.me/917068186472" class="btn btn-secondary">WhatsApp</a>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3546.606789426338!2d83.184!3d27.235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDE0JzA2LjAiTiA4M8KwMTEnMDIuNCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container container">
+            <div>
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczMzWA-DlRdjU66FQJN_I7Jo9uEsFM5MkglyMLd-EPNcig5IayWkmhcb9rR8qzYiH_XPTYmSYK3Xqa-3PQtue2qyLCzGLgO1lg76RSEeMzGQHC6JZK40eAxH9va1Y3KvQpfrkJ52x8DL3riNcCeK49j8=w919-h919-s-no-gm?authuser=0"
+                        alt="Anushka Bakers" style="height: 80px;">
+                    <h3 style="margin: 0; color: var(--color-secondary);">Anushka Bakers</h3>
+                </div>
+                <p>Fresh Taste, Fresh Happiness!</p>
+                <p>Baked with love, served with smiles.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul style="line-height: 2;">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Contact Info</h3>
+                <p>+91 7068186472</p>
+                <p>+91 7317838282</p>
+                <p>Birdpur, Lumbini Road</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Anushka Bakers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">&times;</span>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Full Size">
+    </div>
+
+    <!-- Order Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <div class="form-header">
+                <h3>Place Order</h3>
+                <p>Fill in your details to confirm your order.</p>
+            </div>
+            <form id="order-form" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>Product</label>
+                    <input type="text" id="order-product" name="product" readonly>
+                    <input type="hidden" id="order-price" name="price">
+                </div>
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="order-name" name="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" id="order-mobile" name="mobile" required placeholder="Enter mobile number">
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="order-quantity" name="quantity" min="1" value="1" required
+                        onchange="calculateTotal()">
+                </div>
+                <div class="form-group">
+                    <label>Address</label>
+                    <textarea id="order-address" name="address" rows="2" required
+                        placeholder="Delivery address"></textarea>
+                </div>
+
+                <div class="bill-summary">
+                    <div class="bill-row">
+                        <span>Price per item:</span>
+                        <span id="display-price">₹0</span>
+                    </div>
+                    <div class="bill-row bill-total">
+                        <span>Total Amount:</span>
+                        <span id="display-total">₹0</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Payment Mode</label>
+                    <div class="payment-options">
+                        <div class="payment-option selected" onclick="selectPayment('Cash', this)">Cash</div>
+                        <div class="payment-option" onclick="selectPayment('UPI', this)">UPI</div>
+                        <div class="payment-option" onclick="selectPayment('Online', this)">Online</div>
+                    </div>
+                    <input type="hidden" id="payment-mode" name="paymentMode" value="Cash">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Confirm
+                    Order</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Invoice Modal -->
+    <div id="invoice-modal" class="modal">
+        <div class="modal-content" style="text-align: center;">
+            <span class="close-modal" onclick="closeInvoiceModal()">&times;</span>
+            <h3 style="color: green; margin-bottom: 1rem;">Order Successful!</h3>
+            <p style="margin-bottom: 2rem;">Thank you for your order. Here is your invoice.</p>
+
+            <div id="invoice-container">
+                <div class="invoice-header">
+                    <div class="invoice-logo">
+                        <img src="https://lh3.googleusercontent.com/pw/AP1GczMzWA-DlRdjU66FQJN_I7Jo9uEsFM5MkglyMLd-EPNcig5IayWkmhcb9rR8qzYiH_XPTYmSYK3Xqa-3PQtue2qyLCzGLgO1lg76RSEeMzGQHC6JZK40eAxH9va1Y3KvQpfrkJ52x8DL3riNcCeK49j8=w919-h919-s-no-gm?authuser=0"
+                            alt="Anushka Bakers" style="height: 50px;">
+                        <span>Anushka Bakers</span>
+                    </div>
+                    <div style="font-size: 0.8rem;">Lumbini Road, Birdpur</div>
+                </div>
+                <div class="invoice-details" style="text-align: left;">
+                    <div><strong>Order ID:</strong> <span id="inv-id"></span></div>
+                    <div><strong>Date:</strong> <span id="inv-date"></span></div>
+                    <div><strong>Customer:</strong> <span id="inv-name"></span></div>
+                    <div><strong>Mobile:</strong> <span id="inv-mobile"></span></div>
+                </div>
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="inv-item"></td>
+                            <td id="inv-qty"></td>
+                            <td id="inv-price"></td>
+                            <td id="inv-total-row"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="invoice-total">
+                    Total: <span id="inv-grand-total"></span>
+                </div>
+                <div style="margin-top: 1rem; text-align: left; font-size: 0.9rem;">
+                    <strong>Payment Mode:</strong> <span id="inv-payment"></span>
+                </div>
+                <div class="invoice-footer">
+                    Thank you for choosing Anushka Bakers!<br>
+                    Fresh Taste, Fresh Happiness!
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center;">
+                <button class="btn btn-primary" onclick="downloadInvoice()">Download Bill</button>
+                <button class="btn btn-secondary" onclick="shareInvoice()">Share</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzguyryHJFm3JWIxMCBdskAIufAAMqoYrevJU4JZnQ1uEqQ24kqbatL_02dSECBwHk/exec";
+
+        // --- Data ---
+        const menuItems = [
+            // Cakes
+            { id: 1, category: 'Cakes', name: 'Black Forest', price: '₹450', img: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 2, category: 'Cakes', name: 'Red Velvet', price: '₹550', img: 'https://images.unsplash.com/photo-1586788680434-30d32443f468?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 3, category: 'Cakes', name: 'Chocolate Truffle', price: '₹500', img: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 4, category: 'Cakes', name: 'Fruit Cake', price: '₹400', img: 'https://images.unsplash.com/photo-1565958011068-b7f4c0d1a19a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 5, category: 'Cakes', name: 'Vanilla Sponge', price: '₹350', img: 'https://images.unsplash.com/photo-1519340333755-56e9c1d04579?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 6, category: 'Cakes', name: 'Strawberry Cake', price: '₹480', img: 'https://images.unsplash.com/photo-1542826438-bd32f43d626f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            // Pastries
+            { id: 7, category: 'Pastries', name: 'Chocolate Pastry', price: '₹80', img: 'https://images.unsplash.com/photo-1550617931-e17a7b70dce2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 8, category: 'Pastries', name: 'Pineapple Pastry', price: '₹70', img: 'https://images.unsplash.com/photo-1535141192574-5d4897c12636?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 9, category: 'Pastries', name: 'Butterscotch Pastry', price: '₹75', img: 'https://images.unsplash.com/photo-1559620192-032c4bc4674e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 10, category: 'Pastries', name: 'Black Forest Pastry', price: '₹85', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 11, category: 'Pastries', name: 'Red Velvet Pastry', price: '₹90', img: 'https://images.unsplash.com/photo-1616031037011-087000171abe?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 12, category: 'Pastries', name: 'Mango Pastry', price: '₹75', img: 'https://images.unsplash.com/photo-1505253758473-96b701d2cd03?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            // Cookies
+            { id: 13, category: 'Cookies', name: 'Butter Cookies', price: '₹150/kg', img: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 14, category: 'Cookies', name: 'Choco Chip Cookies', price: '₹200/kg', img: 'https://images.unsplash.com/photo-1499636136210-6f4ee46e1176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 15, category: 'Cookies', name: 'Oatmeal Cookies', price: '₹180/kg', img: 'https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 16, category: 'Cookies', name: 'Almond Cookies', price: '₹250/kg', img: 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 17, category: 'Cookies', name: 'Coconut Cookies', price: '₹160/kg', img: 'https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 18, category: 'Cookies', name: 'Gingerbread Cookies', price: '₹220/kg', img: 'https://images.unsplash.com/photo-1605692679818-e21eb13b5a0e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            // Bread
+            { id: 19, category: 'Bread', name: 'Whole Wheat Bread', price: '₹40', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 20, category: 'Bread', name: 'Multigrain Bread', price: '₹50', img: 'https://images.unsplash.com/photo-1549931319-a545dcf3bc73?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 21, category: 'Bread', name: 'Milk Bread', price: '₹35', img: 'https://images.unsplash.com/photo-1598373182133-52452f7691ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 22, category: 'Bread', name: 'Garlic Bread', price: '₹60', img: 'https://images.unsplash.com/photo-1573140247632-f84660f67627?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 23, category: 'Bread', name: 'Focaccia', price: '₹80', img: 'https://images.unsplash.com/photo-1589367920969-ab8e050bbb04?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 24, category: 'Bread', name: 'Baguette', price: '₹55', img: 'https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            // Snacks
+            { id: 25, category: 'Snacks', name: 'Aloo Patties', price: '₹25', img: 'https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 26, category: 'Snacks', name: 'Veg Puff', price: '₹20', img: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 27, category: 'Snacks', name: 'Paneer Roll', price: '₹40', img: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 28, category: 'Snacks', name: 'Samosa', price: '₹15', img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 29, category: 'Snacks', name: 'Cream Roll', price: '₹20', img: 'https://images.unsplash.com/photo-1551024601-569d6f46319c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 30, category: 'Snacks', name: 'Sandwich', price: '₹50', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            // Beverages
+            { id: 31, category: 'Beverages', name: 'Cold Coffee', price: '₹90', img: 'https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 32, category: 'Beverages', name: 'Hot Chocolate', price: '₹100', img: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 33, category: 'Beverages', name: 'Masala Chai', price: '₹20', img: 'https://images.unsplash.com/photo-1576092768241-dec231847233?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 34, category: 'Beverages', name: 'Cappuccino', price: '₹80', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 35, category: 'Beverages', name: 'Mango Shake', price: '₹70', img: 'https://images.unsplash.com/photo-1546173159-315724a31696?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+            { id: 36, category: 'Beverages', name: 'Lemonade', price: '₹40', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' },
+
+            { "id": 100, "category": "Snacks", "name": "Lay's Cheddar Jalapeño", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 101, "category": "Snacks", "name": "Lay's Chile Limón", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 102, "category": "Snacks", "name": "Lay's Classic", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 103, "category": "Snacks", "name": "Lay's Kettle", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 104, "category": "Beverages", "name": "FRIO Soda", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1527960471264-932f39eb5846?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 105, "category": "Beverages", "name": "FRIO Water", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1543253687-c931c8e01820?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 106, "category": "Beverages", "name": "FRIO Juice", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1527960471264-932f39eb5846?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 107, "category": "Dairy", "name": "Gyan Toned Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 108, "category": "Dairy", "name": "Gyan Full Cream Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 109, "category": "Dairy", "name": "Gyan Cow Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 110, "category": "Dairy", "name": "Gyan Masala Ch", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 111, "category": "Dairy", "name": "Gyan Dahi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 112, "category": "Dairy", "name": "Gyan Desi Ghee", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 113, "category": "Dairy", "name": "Gyan Dahi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 114, "category": "Dairy", "name": "Gyan Cow Ghee", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 115, "category": "Dairy", "name": "Gyan Desi Ghee", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 116, "category": "Sweets", "name": "Gyan Bes Laddu", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1517244683847-745431c574df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 117, "category": "Dairy", "name": "Gyan Paneer", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 118, "category": "Dairy", "name": "Gyan Cow Ghee", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 119, "category": "Dairy", "name": "Gyan Desi Ghee", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 120, "category": "Snacks", "name": "Lay's Cheddar Jalapeño", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 121, "category": "Snacks", "name": "Lay's Chile Limón", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 122, "category": "Snacks", "name": "Lay's India's Magic Masala", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 123, "category": "Snacks", "name": "Lay's Classic", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 124, "category": "Snacks", "name": "Lay's Original Potato Chips", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 125, "category": "Biscuits", "name": "PARLE Hide & Seek", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 126, "category": "Biscuits", "name": "PARLE Milano", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1499636136210-6f4ee46e1176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 127, "category": "Biscuits", "name": "PARLE Magix", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 128, "category": "Biscuits", "name": "PARLE Monaco", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 129, "category": "Biscuits", "name": "PARLE Krackjack", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 130, "category": "Biscuits", "name": "PARLE Parle G", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 131, "category": "Biscuits", "name": "PARLE Marie", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1499636136210-6f4ee46e1176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 132, "category": "Snacks", "name": "BINGO! Tedhe Medhe", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 133, "category": "Snacks", "name": "BINGO! Potato Chips (Tomato", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 134, "category": "Snacks", "name": "BINGO! Masala", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 135, "category": "Snacks", "name": "BINGO! Chilli", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 136, "category": "Snacks", "name": "BINGO! Cream Onion", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 137, "category": "Snacks", "name": "BINGO! Hot & Spicy", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 138, "category": "Snacks", "name": "BINGO! Salted)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 139, "category": "Biscuits", "name": "Good Day Pista Badam", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1499636136210-6f4ee46e1176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 140, "category": "Biscuits", "name": "Good Day Cashew", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1499636136210-6f4ee46e1176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 141, "category": "Biscuits", "name": "Good Day Butter Cookies", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 142, "category": "Chocolates", "name": "Cadbury Dairy Milk Silk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 143, "category": "Chocolates", "name": "Cadbury Dairy Milk Fruit & Nut", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 144, "category": "Chocolates", "name": "Cadbury Dairy Milk Choco Bubblu", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 145, "category": "Chocolates", "name": "Cadbury Dairy Milk 5 Star", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 146, "category": "Chocolates", "name": "Cadbury Dairy Milk Crackle", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 147, "category": "Chocolates", "name": "Cadbury Dairy Milk Coast Almond", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 148, "category": "Beverages", "name": "Hell Energy Energy Drink Classic", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 149, "category": "Snacks", "name": "Haldiram's Chips/Tortilla Chips (Onion", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 150, "category": "Snacks", "name": "Haldiram's Salted", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 151, "category": "Snacks", "name": "Haldiram's Spicy", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 152, "category": "Snacks", "name": "Haldiram's Sett Masala)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 153, "category": "Snacks", "name": "Haldiram's Pani Puri Puris", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 154, "category": "Snacks", "name": "Haldiram's Bhujia", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 155, "category": "Snacks", "name": "Haldiram's Choley Chawal", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 156, "category": "Sweets", "name": "Haldiram's Soan Papdi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1605196560613-b8f980e84b8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 157, "category": "Sweets", "name": "Haldiram's Rasmalai", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1605196560613-b8f980e84b8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 158, "category": "Snacks", "name": "Haldiram's Kadhai Paneer", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 159, "category": "Sweets", "name": "Haldiram's Gulab Jamun", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1517244683847-745431c574df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 160, "category": "Snacks", "name": "Haldiram's Taka Tak", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 161, "category": "Snacks", "name": "Lay's Potato Chips (Barbecue", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 162, "category": "Snacks", "name": "Lay's Classic", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 163, "category": "Snacks", "name": "Lay's Sour Cream & Onion", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 164, "category": "Snacks", "name": "Lay's Salt & Vinegar)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 165, "category": "Chocolates", "name": "Cadbury Bytes", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 166, "category": "Chocolates", "name": "Cadbury Twirl", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 167, "category": "Chocolates", "name": "Cadbury Nutties", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 168, "category": "Chocolates", "name": "Cadbury Gems", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 169, "category": "Chocolates", "name": "Cadbury Bliss", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 170, "category": "Chocolates", "name": "Cadbury Dairy Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 171, "category": "Chocolates", "name": "Cadbury Creme Egg", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 172, "category": "Biscuits", "name": "Cadbury Oreo", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 173, "category": "Chocolates", "name": "Cadbury Bournville", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 174, "category": "Chocolates", "name": "Cadbury Caramel", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 175, "category": "Chocolates", "name": "Cadbury Eclairs", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 176, "category": "Chocolates", "name": "Cadbury Crackle", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 177, "category": "Snacks", "name": "BIKano Chatpat Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 178, "category": "Snacks", "name": "BIKano Dal Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 179, "category": "Snacks", "name": "BIKano Lajawab Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 180, "category": "Snacks", "name": "BIKano Dry Fruit Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 181, "category": "Snacks", "name": "BIKano Chutney Sev", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 182, "category": "Snacks", "name": "BIKano Aloo Bhujia", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 183, "category": "Snacks", "name": "BIKano Manpasand Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 184, "category": "Chocolates", "name": "Cadbury Dairy Milk Silk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 185, "category": "Biscuits", "name": "Cadbury Dairy Milk Silk Oreo", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1499636136210-6f4ee46e1176?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 186, "category": "Biscuits", "name": "BRITANNIA Multi Grain Atta Kulcha", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 187, "category": "Biscuits", "name": "BRITANNIA Nutri Choice (Oats", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 188, "category": "Biscuits", "name": "BRITANNIA 5 Grain Digestive", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 189, "category": "Biscuits", "name": "BRITANNIA Cracker)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 190, "category": "Biscuits", "name": "BRITANNIA Good Day (Chunkies)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 191, "category": "Biscuits", "name": "BRITANNIA Treat", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 192, "category": "Chocolates", "name": "Cadbury Dairy Milk Celebrations", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 193, "category": "Chocolates", "name": "Cadbury Dairy Milk Gems", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 194, "category": "Biscuits", "name": "Cadbury Dairy Milk Bourny", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 195, "category": "Chocolates", "name": "Cadbury Dairy Milk Perk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 196, "category": "Chocolates", "name": "Cadbury Dairy Milk Crackle", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 197, "category": "Chocolates", "name": "Nestle Milkybar", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 198, "category": "Chocolates", "name": "Nestle Munch", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 199, "category": "Chocolates", "name": "Nestle Crunch Max", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 200, "category": "Snacks", "name": "BINGO! Original Style Potato Chips (Cream & Onion", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 201, "category": "Snacks", "name": "BINGO! Himalayan Pink Salt)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 202, "category": "Sweets", "name": "Amul Gulab Jamun", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1589119908995-c6837fa14848?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 203, "category": "Dairy", "name": "Amul Lassi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 204, "category": "Sweets", "name": "Amul Mithai Mate", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1569388330292-7a6a84165c6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 205, "category": "Sweets", "name": "Amul Rajbhog", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1517244683847-745431c574df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 206, "category": "Dairy", "name": "Amul Cheese", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 207, "category": "Dairy", "name": "Amul Fresh Cream", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 208, "category": "Dairy", "name": "Amul Amulya", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 209, "category": "Dairy", "name": "Amul Paneer", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 210, "category": "Chocolates", "name": "Amul Dark Chocolate", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 211, "category": "Sweets", "name": "Amul Shrikha", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1569388330292-7a6a84165c6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 212, "category": "Dairy", "name": "Amul Peanut Spread", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 213, "category": "Snacks", "name": "Haldiram's Gathiya", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 214, "category": "Snacks", "name": "Haldiram's Plain Bhujia", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 215, "category": "Snacks", "name": "Haldiram's Jeera Crispy", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 216, "category": "Snacks", "name": "Haldiram's Boondi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 217, "category": "Sweets", "name": "Haldiram's Habshi Halwa", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1569388330292-7a6a84165c6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 218, "category": "Chocolates", "name": "Nestle Munch", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 219, "category": "Chocolates", "name": "Nestle Milkybar", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 220, "category": "Chocolates", "name": "Nestle Bar One", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 221, "category": "Chocolates", "name": "Nestle KitKat", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 222, "category": "Snacks", "name": "Haldiram's Navrattan", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 223, "category": "Snacks", "name": "Haldiram's Dal Biji", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 224, "category": "Snacks", "name": "Haldiram's Khatta Meetha", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 225, "category": "Snacks", "name": "Haldiram's All in One", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 226, "category": "Snacks", "name": "Haldiram's Bhujia", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 227, "category": "Snacks", "name": "Haldiram's Samosa", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 228, "category": "Biscuits", "name": "Anmol Marie Plus", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 229, "category": "Cakes", "name": "Anmol Cake", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 230, "category": "Biscuits", "name": "Anmol Kaju Bake", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 231, "category": "Cakes", "name": "Anmol Layer Cake", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 232, "category": "Cakes", "name": "Anmol Orange Cake", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 233, "category": "Biscuits", "name": "Anmol Gol Mol", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 234, "category": "Biscuits", "name": "Anmol Bakersbix", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1618923850107-d1a234d7a73a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 235, "category": "Biscuits", "name": "Anmol Coconutty", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 236, "category": "Biscuits", "name": "Anmol Veg Munch", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 237, "category": "Beverages", "name": "PEPSICO Soft Drinks", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 238, "category": "Beverages", "name": "PEPSICO Water", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1543253687-c931c8e01820?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 239, "category": "Beverages", "name": "maaza Soft Drinks", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1527960471264-932f39eb5846?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 240, "category": "Beverages", "name": "maaza Water", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1543253687-c931c8e01820?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 241, "category": "Beverages", "name": "maaza Juice", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1543253687-c931c8e01820?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 242, "category": "Chocolates", "name": "Cadbury Dairy Milk Silk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 243, "category": "Chocolates", "name": "Cadbury Dairy Milk Fruit & Nut", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 244, "category": "Chocolates", "name": "Cadbury Dairy Milk Choco Bubblu", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 245, "category": "Chocolates", "name": "Cadbury Dairy Milk 5 Star", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 246, "category": "Chocolates", "name": "Cadbury Dairy Milk Crackle", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1511381939415-e44015466834?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 247, "category": "Sweets", "name": "Amul Rajbhog", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1569388330292-7a6a84165c6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 248, "category": "Sweets", "name": "Amul Gulab Jamun", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1605196560613-b8f980e84b8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 249, "category": "Dairy", "name": "Amul Lassi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 250, "category": "Sweets", "name": "Amul Mithai Mate", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1517244683847-745431c574df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 251, "category": "Dairy", "name": "Amul Sour Cream", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 252, "category": "Dairy", "name": "Amul Cheese", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 253, "category": "Dairy", "name": "Amul Yoghurt", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 254, "category": "Dairy", "name": "Amul Paneer", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 255, "category": "Chocolates", "name": "Amul Dark Chocolate", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 256, "category": "Dairy", "name": "Amul Gold Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 257, "category": "Sweets", "name": "Amul Shrikha", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1517244683847-745431c574df?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 258, "category": "Snacks", "name": "BIKano Khatta Meetha", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 259, "category": "Snacks", "name": "BIKano Tasty (Spicy Coated Peanuts)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 260, "category": "Snacks", "name": "BIKano Lajawab Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 261, "category": "Snacks", "name": "BIKano Aloo Bhujia", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 262, "category": "Snacks", "name": "BIKano Navratan Mixture", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 263, "category": "Beverages", "name": "Coca-Cola Soft Drinks", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 264, "category": "Beverages", "name": "Coca-Cola Water", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 265, "category": "Beverages", "name": "Coca-Cola Juice", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 266, "category": "Dairy", "name": "Amul Fresh Cream", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 267, "category": "Dairy", "name": "Amul Gold Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 268, "category": "Dairy", "name": "Amul Taaza Milk", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 269, "category": "Dairy", "name": "Amul Dahi", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1635436368486-cb08ae99adad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 270, "category": "Dairy", "name": "Amul Amulya Dairy Whitener", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 271, "category": "Dairy", "name": "Amul Butter", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 272, "category": "Dairy", "name": "Amul Paneer", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1563636619-e9143da7973b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 273, "category": "Dairy", "name": "Amul Cheese", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 274, "category": "Snacks", "name": "BIKano Chips (Simply Salted", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1599490659213-e2b9527bd087?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 275, "category": "Snacks", "name": "BIKano Tangy Tomato", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 276, "category": "Snacks", "name": "BIKano Cream & Onion)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 277, "category": "Snacks", "name": "Haldiram's Nut Cracker", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 278, "category": "Snacks", "name": "Haldiram's Takatak (Chatpata Masala)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1621447504864-d8686e12698c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 279, "category": "Snacks", "name": "Haldiram's Bhujia", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 280, "category": "Snacks", "name": "Haldiram's Chips (Classic Salted)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 281, "category": "Snacks", "name": "Haldiram's Whoopies (Cheezi Balls)", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1600952841320-db92ec4047ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 282, "category": "Chocolates", "name": "Cadbury Dairy Milk Fruit & Nut", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 283, "category": "Chocolates", "name": "Cadbury Dairy Milk Caramello", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 284, "category": "Chocolates", "name": "Cadbury Dairy Milk Old Gold Dark Chocolate", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 285, "category": "Chocolates", "name": "Cadbury Dairy Milk Tropical", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1606312619070-d48b4c652a52?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 286, "category": "Chocolates", "name": "Cadbury Dairy Milk Black Forest", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1549007994-cb92caebd54b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 287, "category": "Chocolates", "name": "Cadbury Dairy Milk Roast Almond", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1548907040-4baa42d10919?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" },
+            { "id": 288, "category": "Snacks", "name": "KHARBANDA'S MUSKAN Suji Toast", "price": "₹MRP", "img": "https://images.unsplash.com/photo-1566478919030-26d9c28642dd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" }
+        ];
+
+        const galleryImages = [
+            'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1535141192574-5d4897c12636?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1517701604599-bb29b5dd7359?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+            'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
+        ];
+
+        // --- Logic ---
+
+        // Mobile Menu
+        function toggleMenu() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        }
+        function closeMenu() {
+            document.querySelector('.nav-menu').classList.remove('active');
+        }
+
+        // Menu Rendering & Filtering
+        const categories = ['All', 'Cakes', 'Pastries', 'Cookies', 'Bread', 'Snacks', 'Beverages', 'Dairy', 'Chocolates', 'Biscuits', 'Sweets'];
+        let activeCategory = 'All';
+
+        function renderCategories() {
+            const container = document.getElementById('category-filter');
+            container.innerHTML = categories.map(cat =>
+                `<button class="filter-btn ${cat === activeCategory ? 'active' : ''}" onclick="setCategory('${cat}')">${cat}</button>`
+            ).join('');
+        }
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategories();
+            renderMenu();
+        }
+
+        function renderMenu() {
+            const container = document.getElementById('menu-grid');
+            const filtered = activeCategory === 'All' ? menuItems : menuItems.filter(item => item.category === activeCategory);
+            container.innerHTML = filtered.map(item => `
+                <div class="menu-item">
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="menu-info">
+                        <h3>${item.name}</h3>
+                        <span class="category-tag">${item.category}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Gallery Rendering
+        function renderGallery() {
+            const container = document.getElementById('gallery-grid');
+            container.innerHTML = galleryImages.map(img => `
+                <div class="gallery-item" onclick="openLightbox('${img}')">
+                    <img src="${img}" alt="Gallery Image">
+                </div>
+            `).join('');
+        }
+
+        // Lightbox
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Order Modal Logic
+        function openOrderModal(productName, priceStr) {
+            document.getElementById('order-product').value = productName;
+
+            // Parse price (remove ₹ and /kg, /pcs etc)
+            const price = parseInt(priceStr.replace(/[^0-9]/g, ''));
+            document.getElementById('order-price').value = price;
+
+            document.getElementById('order-quantity').value = 1;
+            calculateTotal();
+
+            document.getElementById('order-modal').classList.add('active');
+        }
+
+        function closeOrderModal() {
+            document.getElementById('order-modal').classList.remove('active');
+        }
+
+        function calculateTotal() {
+            const price = parseInt(document.getElementById('order-price').value) || 0;
+            const qty = parseInt(document.getElementById('order-quantity').value) || 1;
+            const total = price * qty;
+
+            document.getElementById('display-price').innerText = '₹' + price;
+            document.getElementById('display-total').innerText = '₹' + total;
+        }
+
+        function selectPayment(mode, element) {
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('payment-mode').value = mode;
+        }
+
+        // Order Submission
+        function submitOrder(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Processing...';
+            btn.disabled = true;
+
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Add total amount to data
+            const price = parseInt(document.getElementById('order-price').value) || 0;
+            const qty = parseInt(document.getElementById('order-quantity').value) || 1;
+            data.amount = '₹' + (price * qty);
+
+            // Generate Order ID
+            data.orderId = 'ORD-' + Math.floor(Math.random() * 100000);
+
+            if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_SCRIPT_URL_HERE") {
+                alert("Please configure the Google Script URL in the code first!");
+                btn.innerText = originalText;
+                btn.disabled = false;
+                return;
+            }
+
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    closeOrderModal();
+                    showInvoice(data);
+                    e.target.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert("Something went wrong. Please try again.");
+                })
+                .finally(() => {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                });
+        }
+
+        // Invoice Logic
+        function showInvoice(data) {
+            document.getElementById('inv-id').innerText = data.orderId;
+            document.getElementById('inv-date').innerText = new Date().toLocaleDateString();
+            document.getElementById('inv-name').innerText = data.name;
+            document.getElementById('inv-mobile').innerText = data.mobile;
+            document.getElementById('inv-item').innerText = data.product;
+            document.getElementById('inv-qty').innerText = data.quantity;
+            document.getElementById('inv-price').innerText = '₹' + document.getElementById('order-price').value;
+            document.getElementById('inv-total-row').innerText = data.amount;
+            document.getElementById('inv-grand-total').innerText = data.amount;
+            document.getElementById('inv-payment').innerText = data.paymentMode;
+
+            // Show the invoice container inside the modal
+            document.getElementById('invoice-container').style.display = 'block';
+            document.getElementById('invoice-modal').classList.add('active');
+        }
+
+        function closeInvoiceModal() {
+            document.getElementById('invoice-modal').classList.remove('active');
+            document.getElementById('invoice-container').style.display = 'none';
+        }
+
+        function downloadInvoice() {
+            const invoiceElement = document.getElementById('invoice-container');
+            html2canvas(invoiceElement, { useCORS: true, allowTaint: true }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'AnushkaBakery_Invoice.png';
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        }
+
+        function shareInvoice() {
+            const invoiceElement = document.getElementById('invoice-container');
+            html2canvas(invoiceElement, { useCORS: true, allowTaint: true }).then(canvas => {
+                canvas.toBlob(blob => {
+                    const file = new File([blob], "invoice.png", { type: "image/png" });
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Anushka Bakers Invoice',
+                            text: 'Here is your invoice from Anushka Bakers.',
+                            files: [file]
+                        }).catch(console.error);
+                    } else {
+                        alert("Sharing is not supported on this device/browser. Please download the invoice.");
+                    }
+                });
+            });
+        }
+
+        // Initialize
+        renderCategories();
+        renderMenu();
+        renderGallery();
+
+    </script>
+</body>
+
+</html>
+</body>
+
+</html>
